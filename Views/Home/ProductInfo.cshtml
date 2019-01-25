@@ -1,0 +1,28 @@
+<style>
+    body {
+        text-align:center;
+    }
+    div {
+    margin:auto;
+    }
+    
+    a {
+    margin-bottom:5px;
+    }
+</style>
+
+<partial name="_NavPartial"/>
+
+    <div>
+        <h2>@ViewBag.currentproduct.ProductName</h2>
+        <img src="@ViewBag.currentproduct.ImageUrl" width="250">
+        <h4>@ViewBag.currentproduct.ProductDescription</h4>
+        <h5>$@ViewBag.currentproduct.Price.ToString("N2")</h5>
+        <h6>@ViewBag.currentproduct.InitialQuantity left in stock</h6>
+        <a href="/addtocart/@ViewBag.currentproduct.ProductId" class="btn btn-primary">Add to Cart</a>
+    </div>
+
+
+<a href="/allproducts" class="btn btn-primary">Go Back to Dashboard</a>
+
+

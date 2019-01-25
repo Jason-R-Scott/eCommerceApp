@@ -1,0 +1,101 @@
+<style>
+
+table td, th {
+    width:20%;
+    text-align:center;
+   
+}
+
+table tr:hover {
+    background-color:#ddd;
+}
+
+table{
+    margin:auto;
+}
+
+label {
+  margin-left:800px;
+}
+
+.total {
+            font-weight:bold;
+            text-decoration:underline;
+            font-size:16px;
+        }
+
+
+
+</style>
+
+
+
+
+@model ECommerceApp.Models.StripeSettings
+@using Microsoft.Extensions.Options
+@inject IOptions<StripeSettings> Stripe
+
+<div class="row justify-content-center between align-items-center">
+<partial name="_NavPartial" />
+</div>
+
+
+
+<h1>Payment Page</h1>
+
+<h5>Please check the details of your order before proceeding to the payment screen.</h5>
+
+
+      
+              <table class="table table-sm">
+  <thead>
+    <tr>
+      <th scope="col">ProductId</th>
+      <th scope="col">Name</th>
+      <th scope="col">Price</th>
+      <th scope="col">Quantity</th>
+      <th scope="col">Sub Total</th>
+    </tr>
+  </thead>
+
+   <tbody>
+       @foreach (var item in ViewBag.allitems)
+        {
+    <tr>
+      
+      <td>@item.Product.ProductId</td>
+      <td>@item.Product.ProductName</td>
+        <td>$@item.Product.Price</td>
+        <td>@item.Quantity</td>
+        <td class="table-success">$@(item.Product.Price * item.Quantity)</td>
+    </tr>
+    }
+    <tr class="table-success">
+            <td align="right" colspan="4">Total</td>
+            <td class="total">
+                $@ViewBag.total
+            </td>
+    </tr>
+     
+  </tbody>
+
+      </table>
+
+
+
+<form asp-action="Charge" asp-controller="Cart" method="POST">
+  <!-- <article>
+    <label><strong>Total: $@ViewBag.total</strong></label>
+  </article> -->
+  
+  
+  <script
+    src="https://checkout.stripe.com/v2/checkout.js" class="stripe-button"
+    data-key="pk_test_901ctDeDXHyuhU43H0iDkPm5"
+    data-amount=@ViewBag.amount
+    data-name="Demo Site"
+    data-description="Widget"
+    data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+    data-locale="auto">
+  </script>
+</form>

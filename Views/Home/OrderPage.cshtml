@@ -1,0 +1,80 @@
+<style>
+
+#order-table td, th {
+    width:20%;
+    text-align:center;
+    border:2px solid black;
+}
+
+#order-table tr:hover {
+    background-color:#ddd;
+}
+
+#order-table{
+    margin:auto;
+}
+
+#backButton {
+    margin-left: 450px;
+}
+
+
+
+
+
+</style>
+
+
+
+
+
+
+
+<div class="row justify-content-center between align-items-center">
+<partial name="_NavPartial" />
+</div>
+
+<div class="container">
+<h1>Order History Page</h1>
+<a id="backButton" href="/allproducts" class="btn btn-primary">Go Back to Dashboard</a>
+<h5>Please click on the Order Total to view details about the order.</h5>
+
+<table id="order-table">
+    <thead>
+        <th>
+            OrderId
+        </th>
+        <th>
+            OrderDate
+        </th>
+        <th>
+            OrderTotal
+        </th>
+    <thead>
+    
+    <tbody>
+        
+
+@foreach(var order in @ViewBag.allorders)
+{
+    <tr>   
+        <td>@order.OrderId</td>
+        <td>@order.OrderDate</td>
+        <td><a href="/orderdetails/@order.OrderId">$ @order.OrderTotal.ToString("N2")</a></td>    
+    </tr>
+}
+    </tbody>
+
+</table>
+
+</div>
+
+
+
+
+
+
+
+
+
+

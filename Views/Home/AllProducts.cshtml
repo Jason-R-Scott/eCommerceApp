@@ -1,0 +1,90 @@
+<style>
+  .ProductPage{
+    display: inline-block;
+  }
+  .ProductForm{
+    float: left;
+    display: inline-block;
+    padding: 10px;
+    width: 30%;
+  }
+  h1 {
+    width: 100%;
+    display: inline-block;
+    float: left;
+  }
+  .modal-content{
+    width: 130%;
+    margin: 10px;
+  }
+
+   .card{
+    display: inline-block;
+    margin: 5px auto;
+    margin-left:30px;
+    text-align:center;
+  }
+
+  .addproduct {
+    display:inline-block;
+    vertical-align:top;
+    float:right;
+    width:20%;
+  }
+  .extrawidth {
+    display:inline-block;
+    vertical-align:top;
+    width:60%;
+  }
+  h3 {
+    color:red;
+  }
+  a {
+    margin-bottom:10px;
+  }
+
+  #userSession {
+    color:green;
+    display:inline-block;
+  }
+
+</style>
+
+<div class="row justify-content-center between align-items-center">
+<partial name="_NavPartial" />
+</div>
+
+
+
+<h2 class="extrawidth">All Products Page</h2>
+  <h5 id="userSession">Welcome @ViewBag.userName</h5>
+
+<a class="addproduct" href="/addproduct">Add New Product</a>
+<!-- <div>
+  <partial name="_ProductForm" />  
+  <partial name="_CheckoutPartial" />
+</div> -->
+
+<div class="ProductPage">
+</div>
+
+@if(TempData["QtyError"] != null)
+{
+    <h3>@TempData["QtyError"]</h3>
+}
+@foreach(var product in @ViewBag.allproducts){
+<div class="card" style="width: 15rem;">
+  <img class="card-img-top" src="@product.ImageUrl/80x80" alt="Card image cap">
+  <div class="card-body">
+    <h5 class="card-title">@product.ProductName</h5>
+    <h5 class="card-title">$@product.Price.ToString("N2")</h5>
+    <p class="card-text">@product.InitialQuantity left in stock</p>
+    <a href="addtocart/@product.ProductId" class="btn btn-primary">Add to Cart</a>
+    <a href="product/@product.ProductId" class ="btn btn-dark">Product Info</a>
+  </div>
+</div>
+}
+
+
+
+

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <style>
+        body {
+            text-align:center;
+        }
+        .total {
+            font-weight:bold;
+            text-decoration:underline;
+            font-size:16px;
+        }
+        h3 {
+            margin-top:20px;
+        }
+    </style>
+</head>
+<body>
+    <partial name="_NavPartial" />
+    
+
+    <h3>Cart Page</h3>
+    <!-- <a href="/logout">Logout</a> -->
+  
+    <br>
+
+    <table class="table table-sm">
+  <thead>
+    <tr>
+      <th scope="col">Option</th>
+      <th scope="col">Id</th>
+      <th scope="col">Name</th>
+      <th scope="col">Price</th>
+      <th scope="col">Quantity</th>
+      <th scope="col">Sub Total</th>
+    </tr>
+  </thead>
+  <tbody>
+       @foreach (var item in ViewBag.cart)
+        {
+    <tr>
+      <th scope="row"><a asp-controller="cart" asp-action="remove" asp-route-id="@item.ItemId">Remove</a></th>
+      <td>@item.Product.ProductId</td>
+      <td>@item.Product.ProductName</td>
+        <td>$@item.Product.Price</td>
+        <td>@item.Quantity</td>
+        <td>$@(item.Product.Price * item.Quantity)</td>
+    </tr>
+    }
+     <tr class="table-success">
+            <td align="right" colspan="5">Total</td>
+            <td class="total">
+                $@ViewBag.total
+            </td>
+        </tr>
+  </tbody>
+</table>
+
+    <a class="btn btn-primary" href="/payments">Checkout</a>
+
+    <a type="button" class="btn btn-outline-success" href="/allproducts">Continue Shopping</a>
+
+</body>
+</html>

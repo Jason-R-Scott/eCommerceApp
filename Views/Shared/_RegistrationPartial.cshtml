@@ -1,0 +1,32 @@
+@model ECommerceApp.ViewModels.RegistrationViewModel
+
+
+<div class="col-4">
+    <h2>Register</h2><br>
+<form asp-action="Create" asp-controller="Auth" method="POST">
+    
+    <span asp-validation-for="FirstName"></span>
+    <label asp-for="FirstName">First Name</label><br>
+    <input asp-for="FirstName" type="text"><br>
+
+    <span asp-validation-for="LastName"></span>
+    <label asp-for="LastName">Last Name</label><br>
+    <input asp-for="LastName" type="text"><br>
+
+    <span asp-validation-for="Email"></span>
+    <label asp-for="Email">Email</label><br>
+    <input asp-for="Email" type="email"><br>
+
+    <span asp-validation-for="Password"></span>
+    <label asp-for="Password">Password</label><br>
+    <input asp-for="Password" type="password"><br>
+
+    <span asp-validation-for="Confirm"></span>
+    <label asp-for="Confirm">Confirm Password</label><br>
+    <input asp-for="Confirm" type="password"><br><br>
+
+    <input  class="btn btn-success" type="submit" value="Submit">
+
+</form>
+
+</div>

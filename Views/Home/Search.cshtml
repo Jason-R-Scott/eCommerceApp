@@ -1,0 +1,30 @@
+<style>
+    .img{
+  display: inline-block;
+  width:20%;
+}
+.texty{
+  display: inline-block;
+  width:70%;
+}
+</style>
+
+
+<div>
+<partial name="_NavPartial" />
+<partial name="_CheckoutPartial" />
+</div>
+<h2>Search Result</h2>
+  
+   @foreach(var product in @ViewBag.searchproduct){
+    <a href="/product/@product.ProductId" class="list-group-item list-group-item-action flex-column align-items-start">
+    <div class="img"> <img src="@product.ImageUrl" alt="igUrl" height="100px" width="100px"></div>
+    <div class="texty">
+    <div class="d-flex w-100 justify-content-between">
+      <h5 class="mb-1">@product.ProductName</h5>
+      <p>@product.ProductDescription</p>
+      <h4 class="text-muted">$@product.Price</h4>
+    </div>
+  </div>
+  </a>
+ }
